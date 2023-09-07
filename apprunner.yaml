@@ -11,6 +11,7 @@ build:
       value: '8000'
 
 run:
-  command: python app/main.py # command to run
+  # fastapi module app.main:app
+  command: uvicorn app.main:app
   network:
     port: 8000 # port AppRunner will expose
