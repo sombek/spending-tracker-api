@@ -15,11 +15,11 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+def root():
+    return {"message": "Hello World"}
+
+
 app.include_router(
     budget_breakdown_router, prefix="/budget-breakdown", tags=["budget-breakdown"]
 )
-
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
