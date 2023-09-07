@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
@@ -23,3 +24,6 @@ def root():
 app.include_router(
     budget_breakdown_router, prefix="/budget-breakdown", tags=["budget-breakdown"]
 )
+
+if __name__ == "__main__":
+    uvicorn.run(app, port=8000, host="0.0.0.0")
