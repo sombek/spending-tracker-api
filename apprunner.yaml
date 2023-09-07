@@ -11,6 +11,6 @@ build:
       value: '8000'
 
 run:
-  command: python app/main.py # command to run
+  command: export PYTHONPATH=$PWD && python app/main.py # command to run
   network:
     port: 8000 # port AppRunner will expose
