@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:12.1-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: all-track-infra
+    ports:
+      - "5432:5432"

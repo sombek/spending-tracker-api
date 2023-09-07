@@ -1,0 +1,11 @@
+fastapi
+ujson
+sqlalchemy
+alembic
+pydantic
+pydantic-settings
+psycopg2
+humps
+PyJWT
+cryptography
+httpx
