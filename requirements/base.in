@@ -4,7 +4,7 @@ sqlalchemy
 alembic
 pydantic
 pydantic-settings
-psycopg2
+aws-psycopg2
 humps
 PyJWT
 cryptography
