@@ -43,13 +43,13 @@ class TokenPayload(BaseModel):
 
 
 class UserInfo(BaseModel):
-    sub: str
-    given_name: str
-    family_name: str
-    nickname: str
-    name: str
-    picture: str
-    locale: str
-    updated_at: str
+    sub: str | None
+    given_name: str | None
+    family_name: str | None
+    nickname: str | None
+    name: str | None
+    picture: str | None
+    locale: str | None
+    updated_at: str | None
     email: str
-    email_verified: bool
+    email_verified: bool | None
