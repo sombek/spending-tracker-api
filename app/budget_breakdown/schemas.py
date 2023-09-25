@@ -21,6 +21,9 @@ class BudgetBreakdownJson(CamelModel):
     class MultiPaymentBreakdown(CamelModel):
         title: str
         purchases: list[Transaction]
+        height: int | None = None
+        x: int | None = None
+        y: int | None = None
 
     # pydantic model
     money_in: list[Transaction]

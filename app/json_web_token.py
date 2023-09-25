@@ -24,7 +24,12 @@ class JsonWebToken:
 
     def validate(self):
         try:
-            jwks_client = jwt.PyJWKClient(self.jwks_uri, ssl_context=ctx)
+            jwks_client = jwt.PyJWKClient(
+                self.jwks_uri,
+                ssl_context=ctx,
+                cache_jwk_set=True,
+                cache_keys=True,
+            )
             jwt_signing_key = jwks_client.get_signing_key_from_jwt(
                 token=self.jwt_access_token
             ).key
