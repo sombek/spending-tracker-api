@@ -29,3 +29,4 @@ class BudgetBreakdownJson(CamelModel):
     money_in: list[Transaction]
     single_payments: list[Transaction]
     multi_payments: list[MultiPaymentBreakdown]
+    last_month_money_remaining: float | None = None
