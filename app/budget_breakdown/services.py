@@ -26,6 +26,7 @@ def get_budget_(
     last_month_budget_stmt = select(BudgetBreakdown).where(
         BudgetBreakdown.year == year,
         BudgetBreakdown.month == month - 1,
+        BudgetBreakdown.user_id == user.id,
     )
     last_month_budget = session.execute(last_month_budget_stmt).scalar_one_or_none()
     if last_month_budget is not None:
