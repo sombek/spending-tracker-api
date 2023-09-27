@@ -11,10 +11,8 @@ from app.infra.db import db_session
 from app.json_web_token import JsonWebToken
 
 
-def validate_token_and_get_user(
-    token: str = Depends(get_bearer_token),
-    session: Session = Depends(db_session),
-):
+def validate_token_and_get_user(token: str = Depends(get_bearer_token)):
+    session: Session = next(db_session())
     token_payload = TokenPayload.model_validate(JsonWebToken(token).validate())
     get_user_query = select(User).where(User.sub == token_payload.sub)
     user = session.execute(get_user_query).scalar_one_or_none()
@@ -28,6 +26,7 @@ def validate_token_and_get_user(
         user = User(**user_info.model_dump())
         session.add(user)
         session.commit()
+    session.close()
 
     return user
 

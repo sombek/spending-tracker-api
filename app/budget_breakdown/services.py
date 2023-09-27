@@ -139,6 +139,9 @@ def get_budget_(
     )
     session.add(budget)
     session.commit()
+    if last_month_remaining != 0:
+        initial_budget.last_month_money_remaining = last_month_remaining
+
     return initial_budget
 
 
