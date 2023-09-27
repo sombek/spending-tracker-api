@@ -50,21 +50,85 @@ def get_budget_(
             budget.budget_breakdown["last_month_money_remaining"] = last_month_remaining
         return BudgetBreakdownJson.model_validate(budget.budget_breakdown)
 
-    initial_budget = BudgetBreakdownJson(
-        money_in=[
-            Transaction(title="Salary", amount=0),
-        ],
-        single_payments=[
-            Transaction(title="Rent", amount=0),
-        ],
-        multi_payments=[
-            BudgetBreakdownJson.MultiPaymentBreakdown(
-                title="Groceries",
-                purchases=[
-                    Transaction(title="Tamimi", amount=0),
-                ],
-            ),
-        ],
+    initial_budget = BudgetBreakdownJson.model_validate(
+        {
+            "money_in": [{"title": "Salary", "amount": 10500.0}],
+            "multi_payments": [
+                {
+                    "x": 0,
+                    "y": 0,
+                    "title": "Bills",
+                    "height": 117,
+                    "purchases": [
+                        {"title": "Electricty", "amount": 215.5},
+                        {"title": "Internet", "amount": 287.5},
+                    ],
+                },
+                {
+                    "x": 2,
+                    "y": 0,
+                    "title": "\r\nGas\r\n",
+                    "height": 94,
+                    "purchases": [{"title": "26/09", "amount": 144.0}],
+                },
+                {
+                    "x": 0,
+                    "y": 117,
+                    "title": "\r\nInternet Subscription\r\n",
+                    "height": 163,
+                    "purchases": [
+                        {"title": "\r\nيوتيوب بيرميوم\r\n", "amount": 36.0},
+                        {"title": "\r\nايكلاود\r\n", "amount": 45.0},
+                        {"title": "1Password", "amount": 15.3},
+                        {"title": "Google Storage", "amount": 6.99},
+                    ],
+                },
+                {
+                    "x": 1,
+                    "y": 160,
+                    "title": "\r\nGroceries\r\n",
+                    "height": 117,
+                    "purchases": [
+                        {"title": "Tamimi", "amount": 250.0},
+                        {"title": "مقاضي لعزيمة اهلي", "amount": 411.0},
+                    ],
+                },
+                {
+                    "x": 1,
+                    "y": 0,
+                    "title": "\r\nResturants & Cafes\r\n",
+                    "height": 160,
+                    "purchases": [
+                        {"title": "فايف قايز مع الشباب", "amount": 67.0},
+                        {"title": "غداء في الدوام من جاهز", "amount": 54.0},
+                        {"title": "\r\nدوار السعادة\r\n", "amount": 23.0},
+                    ],
+                },
+                {
+                    "x": 2,
+                    "y": 94,
+                    "title": "Others",
+                    "height": 246,
+                    "purchases": [
+                        {"title": "Coffee Beans", "amount": 103.0},
+                        {"title": "Tickets to Riyadh Season", "amount": 250.0},
+                        {
+                            "title": "\r\nرسوم تحويل من STCPay to Bank\r\n",
+                            "amount": 6.0,
+                        },
+                        {"title": "\r\nحلاق\r\n", "amount": 60.0},
+                        {"title": "رسوم مواقف المطار يوم وصلت ريان", "amount": 20.0},
+                    ],
+                },
+            ],
+            "single_payments": [
+                {"title": "Rent", "amount": 2000.0},
+                {"title": "Charity", "amount": 250.0},
+                {"title": "Loan", "amount": 1750.0},
+                {"title": "Investment", "amount": 2500.0},
+            ],
+            "last_month_money_remaining": None,
+        }
     )
     budget = BudgetBreakdown(
         year=year,
