@@ -19,9 +19,20 @@ class Transaction(CamelModel):
 
 class BudgetBreakdownJson(CamelModel):
     class MultiPaymentBreakdown(CamelModel):
+        class Columns(CamelModel):
+            x: int | None = None
+            y: int | None = None
+
         title: str
         purchases: list[Transaction]
         height: int | None = None
+        # number of columns : {
+        #   1: { x: 0, y: 0 },
+        #   2: { x: 0, y: 0 },
+        #   3: { x: 0, y: 0 },
+        # }
+        columns: dict[int, dict[str, int | None]] | None = None
+        # TODO: Remove this
         x: int | None = None
         y: int | None = None
 
