@@ -19,9 +19,9 @@ def get_budget_(
     )
     budget = session.execute(get_budget_query).scalar_one_or_none()
 
-    last_month_sum_money_in = 0
-    last_month_sum_money_out = 0
-    last_month_remaining = 0
+    last_month_sum_money_in = 0.0
+    last_month_sum_money_out = 0.0
+    last_month_remaining = 0.0
 
     last_month_budget_stmt = select(BudgetBreakdown).where(
         BudgetBreakdown.year == year,
@@ -129,6 +129,7 @@ def get_budget_(
                 {"title": "Investment", "amount": 2500.0},
             ],
             "last_month_money_remaining": None,
+            "show_tour": True,
         }
     )
     budget = BudgetBreakdown(
