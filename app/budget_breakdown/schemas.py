@@ -41,4 +41,4 @@ class BudgetBreakdownJson(CamelModel):
     single_payments: list[Transaction]
     multi_payments: list[MultiPaymentBreakdown]
     last_month_money_remaining: float | None = None
-    show_tour: bool | None = None
+    show_tour: bool | None = False
