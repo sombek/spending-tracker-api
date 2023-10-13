@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import HTTPException
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -163,6 +165,7 @@ def upsert_budget_(
         raise HTTPException(status_code=404, detail="Budget not found")
 
     budget.budget_breakdown = budget_breakdown.model_dump()
+    budget.last_updated = datetime.utcnow()
     session.commit()
 
     return budget_breakdown
