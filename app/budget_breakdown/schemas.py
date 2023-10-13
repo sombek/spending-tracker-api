@@ -26,6 +26,7 @@ class BudgetBreakdownJson(CamelModel):
         title: str
         purchases: list[Transaction]
         height: int | None = None
+        color: str | None = None
         # number of columns : {
         #   1: { x: 0, y: 0 },
         #   2: { x: 0, y: 0 },
