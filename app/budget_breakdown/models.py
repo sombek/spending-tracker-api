@@ -1,8 +1,9 @@
+from datetime import datetime
+
 from sqlalchemy import ForeignKey
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.budget_breakdown.schemas import BudgetBreakdownJson
 from app.infra.db import Base
 
 
@@ -17,6 +18,9 @@ class BudgetBreakdown(Base):
     month: Mapped[int] = mapped_column()
     # jsonb column for storing the budget breakdown
     budget_breakdown: Mapped[dict] = mapped_column(JSONB())
+    last_updated: Mapped[datetime] = mapped_column(
+        default=datetime.utcnow, nullable=True
+    )
 
 
 class User(Base):

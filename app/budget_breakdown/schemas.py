@@ -1,5 +1,5 @@
 from humps import camel
-from pydantic import BaseModel, ConfigDict, field_validator, validator
+from pydantic import BaseModel
 
 
 def to_camel(string):
