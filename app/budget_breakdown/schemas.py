@@ -38,6 +38,8 @@ class BudgetBreakdownJson(CamelModel):
         y: int | None = None
 
     # pydantic model
+    from_salary: int | None = None
+    to_salary: int | None = None
     money_in: list[Transaction]
     single_payments: list[Transaction]
     multi_payments: list[MultiPaymentBreakdown]
