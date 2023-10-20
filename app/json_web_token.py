@@ -21,16 +21,17 @@ class JsonWebToken:
     auth0_audience: str = settings.auth0_audience
     algorithm: str = "RS256"
     jwks_uri: str = f"{auth0_issuer_url}.well-known/jwks.json"
+    jwks_client = jwt.PyJWKClient(
+        jwks_uri,
+        ssl_context=ctx,
+        cache_jwk_set=True,
+        lifespan=3600,
+        cache_keys=True,
+    )
 
     def validate(self):
         try:
-            jwks_client = jwt.PyJWKClient(
-                self.jwks_uri,
-                ssl_context=ctx,
-                cache_jwk_set=True,
-                cache_keys=True,
-            )
-            jwt_signing_key = jwks_client.get_signing_key_from_jwt(
+            jwt_signing_key = self.jwks_client.get_signing_key_from_jwt(
                 token=self.jwt_access_token
             ).key
             payload = jwt.decode(
