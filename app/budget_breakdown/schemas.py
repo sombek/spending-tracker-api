@@ -27,15 +27,7 @@ class BudgetBreakdownJson(CamelModel):
         purchases: list[Transaction]
         height: int | None = None
         color: str | None = None
-        # number of columns : {
-        #   1: { x: 0, y: 0 },
-        #   2: { x: 0, y: 0 },
-        #   3: { x: 0, y: 0 },
-        # }
         columns: dict[int, dict[str, int | None]] | None = None
-        # TODO: Remove this
-        x: int | None = None
-        y: int | None = None
 
     # pydantic model
     from_salary: int | None = None
