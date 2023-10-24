@@ -52,7 +52,13 @@ def get_budget_(
         budget.budget_breakdown["show_tour"] = False
         if last_month_remaining != 0:
             budget.budget_breakdown["last_month_money_remaining"] = last_month_remaining
-        return BudgetBreakdownJson.model_validate(budget.budget_breakdown)
+        return BudgetBreakdownJson.model_validate(
+            {
+                **budget.budget_breakdown,
+                "year": year,
+                "month": month,
+            }
+        )
 
     initial_budget = BudgetBreakdownJson.model_validate(
         {
