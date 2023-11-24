@@ -1,4 +1,5 @@
 # create router
+from datetime import datetime
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
@@ -54,7 +55,16 @@ def get_budgets_(session: Session, user: User):
             user_budgets.append(year)
 
         year.months.append(get_budget_(budget.year, budget.month, session, user))
-
+    if len(user_budgets) == 0:
+        # add current year, current month
+        current_year = datetime.now().year
+        current_month = datetime.now().month
+        user_budgets.append(
+            UserBudgets(
+                year=current_year,
+                months=[get_budget_(current_year, current_month, session, user)],
+            )
+        )
     return user_budgets
 
 
