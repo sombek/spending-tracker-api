@@ -65,6 +65,25 @@ def get_budgets_(session: Session, user: User):
                 months=[get_budget_(current_year, current_month, session, user)],
             )
         )
+    # make sure the current year is available
+    current_year = datetime.now().year
+    current_month = datetime.now().month
+    current_year_budget = next(
+        (
+            user_budget
+            for user_budget in user_budgets
+            if user_budget.year == current_year
+        ),
+        None,
+    )
+    if current_year_budget is None:
+        user_budgets.append(
+            UserBudgets(
+                year=current_year,
+                months=[get_budget_(current_year, current_month, session, user)],
+            )
+        )
+
     return user_budgets
 
 
